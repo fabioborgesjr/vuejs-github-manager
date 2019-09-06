@@ -1,9 +1,7 @@
 <template>
   <div>
-    <i class="fas fa-coffee"></i>
-    <font-awesome-icon icon="user-secret" />
     <h1>{{ message }}</h1>
-    <input/>
+    <Input/>
   </div>
 </template>
 
