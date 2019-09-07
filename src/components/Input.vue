@@ -14,31 +14,43 @@
         aria-describedby="basic-addon3"
         v-on:keyup="handleChange"
         data-test="entrada"
+        v-model="value"
       />
     </div>
   </div>
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 
 export default {
   data() {
     return {
       URL: "https://api.github.com",
-      data: []
+      value: ""
     };
   },
   methods: {
     async handleChange(event) {
-      const value = event.target.value,
+      const value = this.value,
         regAllowed = /^[\w]+-?[\w]*$/g;
 
       if (event.key === "Enter") {
         if (regAllowed.test(value)) {
-          let data;
-          data = { data } = await Axios.get(`${this.URL}/users/${value}/repos`);
-          console.log(data)
+          try {
+            let { status, data } = await Axios.get(
+              `${this.URL}/users/${value}/repos`
+            );
+
+            this.$emit("updateContainer", { status, data });
+          } catch (error) {
+            this.$emit("updateContainer", {
+              status: 404,
+              data: []
+            });
+          }
+
+          this.value = "";
         }
       }
     }
