@@ -3,7 +3,10 @@
     <label for="basic-url">Your GitHub username</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon3">
+        <span
+          class="input-group-text"
+          id="basic-addon3"
+        >
           <font-awesome-icon icon="user-secret" />
         </span>
       </div>
@@ -33,7 +36,7 @@ export default {
   methods: {
     async handleChange(event) {
       const value = this.value,
-        regAllowed = /^[\w]+-?[\w]*$/g;
+        regAllowed = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
 
       if (event.key === "Enter") {
         if (regAllowed.test(value)) {
