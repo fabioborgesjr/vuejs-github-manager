@@ -15,7 +15,7 @@ $ npm install
 Depois, para começar a desenvolver
 
 ```bash
-$ npm run server
+$ npm run serve
 ```
 
 ## Tópicos
